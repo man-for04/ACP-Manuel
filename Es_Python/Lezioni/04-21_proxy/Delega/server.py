@@ -19,4 +19,4 @@ if __name__ == '__main__':
     skeleton = Skeleton(PORT, impl) #posso passare tutte le info che mi servono
     ##devo avviare lo skeleton -> spesso run_skeleton, mettere su la comunicazione lato servente (es. istanzia socket ecc)
     skeleton.run_skeleton()
-     #devo vedere come fornire il servizio, la logica di buisness
+    #devo vedere come fornire il servizio, la logica di buisness

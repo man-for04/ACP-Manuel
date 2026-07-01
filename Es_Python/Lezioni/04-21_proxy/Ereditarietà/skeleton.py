@@ -18,7 +18,7 @@ class Skeleton(Subject, ABC): #implemento di fatto l'interfaccia con ASTRATTA
         
     def __init__(self, port): #DIFFERENZA --> QUI NON HO IL RIF AL DELEGANTE
         self.port = port
-     
+    
     @abstractmethod   
     def inverti_stringa(self, data):
         pass

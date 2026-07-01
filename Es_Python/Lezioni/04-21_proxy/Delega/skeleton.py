@@ -4,7 +4,7 @@ from interface import Subject
 import socket, threading
 
 
-def run_function(conn, skeleton_ref):
+def run_function(conn, skeleton_ref:Skeleton):
     
     #va gestita la parte di comunicazione: ricevi il dato, chiama il delegato, manda la risposta
     data = conn.recv(1024)
@@ -20,6 +20,9 @@ class Skeleton(Subject): #implemento di fatto l'interfaccia
         self.delegate = delegate #è un nome che scelgo io, si riferisce all'oggetto impl che ho passato
         
     def inverti_stringa(self, data):
+        """
+        aaa
+        """
         #tale metodo è descritto, NON implementato nell'interfaccia;
         #lo skeleton lo implementa ma non veramente (lo delega)
         return self.delegate.inverti_stringa(data) #ottengo la stringa invertita che a mia volta ritornerò | non ci sarà in ereditarietà
