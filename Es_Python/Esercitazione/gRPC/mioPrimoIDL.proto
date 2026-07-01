@@ -1,0 +1,16 @@
+syntax = "proto3";
+package gRPC;
+
+service Ciaone {
+    rpc diciCiao(msgInvio) returns (msgRitorno);
+}
+
+message msgInvio{
+
+    string contenuto = 1;
+}
+
+message msgRitorno{
+    string contenuto = 1;
+}
+

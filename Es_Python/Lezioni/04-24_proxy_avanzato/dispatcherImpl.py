@@ -6,8 +6,8 @@ class dispatcherImpl(DispatcherSkeleton): #deve implementare metodi
     
     
     def __init__(self, host, port, queue = mp.Queue(5)): #devo anche tenere in considerazione il costruttore del padre
-                                                      #sulla queue è una scelta: posso anche crearla allinterno o passarla dal 
-                                                      # main --> la coda NON va messa nello skeleton, perchè è parte della buisness logic
+                                                    #sulla queue è una scelta: posso anche crearla allinterno o passarla dal
+                                                    # main --> la coda NON va messa nello skeleton, perchè è parte della buisness logic
         super().__init__(host, port) 
         self.queue = queue #va aggiunto questo attributo
         

@@ -1,7 +1,7 @@
 //PROTOCOL BUFFER -> DEFINISCE IDL (generazione automatica stub) + FORMATO INTERSCAMBIO MESSAGGI
 
 syntax = "proto3";
-package helloworld; 
+package helloworld;
 //tutte le interazioni sono in questo spazio dei nomi
 
 //c'è semplicemente servizio say hello che prende una stringa e ritorna una stringa
