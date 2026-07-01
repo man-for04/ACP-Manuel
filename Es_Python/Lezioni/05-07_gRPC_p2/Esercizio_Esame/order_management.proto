@@ -1,0 +1,38 @@
+syntax = "proto3";
+package ecommerce;
+
+
+service OrderManagement {
+    
+    rpc addOrder(Order) returns (StringMessage);
+    rpc getOrder(StringMessage) returns (Order);
+    rpc searchOrders(StringMessage) returns (stream Order);
+    rpc processorders(stream Order) returns (stream CombinedShipment);
+}
+
+message Order {
+
+    string id = 1;
+    repeated string items = 2; //repeated mi indica che esiste una lista di stringhe
+    string description = 3;
+    string price = 4;
+    string destination = 5; //attento a non ripetere 2 volte lo stesso numero (tag value) e non saltarne uno | sono usati per marshalling e un-marshalling
+}
+
+message StringMessage {
+
+    string message = 1;
+
+}
+/*
+message IdMessage { //posso farlo, o riusare StringMessage
+    string id = 1;
+}
+
+*/
+message CombinedShipment {
+
+    string id = 1;
+    string stato = 2;
+    repeated Order orders = 3; 
+}

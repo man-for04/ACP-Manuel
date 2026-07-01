@@ -1,0 +1,26 @@
+
+
+syntax = "proto3";
+
+package statistics;
+
+service StatisticsManager{
+
+    rpc getSensors(Empty) returns (stream Sensor);
+    rpc getMean(Sensor) returns (SensorsMean);
+}
+
+message SensorsMean {
+
+    float sensors_mean = 1;
+}
+
+message Empty {
+
+}
+
+message Sensor {
+
+    int64 sensor_id = 1; //consiglio: usa lo stesso nome che hai usato in flask! Così non impazzisci
+    string data_type = 2;
+}

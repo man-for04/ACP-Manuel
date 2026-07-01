@@ -1,0 +1,22 @@
+
+
+syntax = "proto3";
+
+package helloworld; // così i file generati apparterranno a questo package
+option java_multiple_files = true;
+
+service Greeter {
+
+    rpc Sayhello(HelloRequest) returns (HelloReply); //è unaria-> manda 1 richiesta e riceve 1 risposta
+
+}
+
+message HelloRequest {
+    string request_message = 1;
+}
+
+message HelloReply {
+    string reply_message = 1;
+}
+
+//questo file può essere, volendo, compilato anche per Python (è IDL - Interface Description Language)

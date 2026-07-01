@@ -1,0 +1,33 @@
+//PROTOCOL BUFFER -> DEFINISCE IDL (generazione automatica stub) + FORMATO INTERSCAMBIO MESSAGGI
+
+syntax = "proto3";
+package helloworld; 
+//tutte le interazioni sono in questo spazio dei nomi
+
+//c'è semplicemente servizio say hello che prende una stringa e ritorna una stringa
+
+//specifica IDL del mio servizio HELLOWORLD
+service Greeter { //qui ho lista di chiamate RPC
+    
+    rpc SayHello(HelloRequest) returns (HelloReply); //consiglio: usa messaggi che siano semanticamente espliciti
+    rpc SayHello_stream(stream HelloRequest) returns (stream HelloReply); //⭕ Aggiunto questo! Ora ricompila
+}
+
+message HelloRequest{
+    
+    string name = 1;
+}
+
+message HelloReply{
+    
+    string message = 1;
+}
+
+//TERMINALE:
+// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. helloworld.proto
+
+
+
+//helloworld_pb2.py
+//nell'altro file, ho una series di informazioni codificate secondo protocollo PROTOBUF -> + info importanti per decodificare
+//i messaggi (sto definendo un po' la struttura del frame http2 )
