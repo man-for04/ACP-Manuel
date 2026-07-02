@@ -1,0 +1,16 @@
+syntax = "proto3";
+package ciao;
+
+service somma{
+
+    rpc somma2numeri (msgRichiesta) returns (msgRisposta);
+}
+
+message msgRichiesta{
+    int32 operando1 = 1;
+    int32 operando2= 2;
+}
+
+message msgRisposta{
+    int32 risultato = 1;
+}

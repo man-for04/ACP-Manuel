@@ -1,0 +1,14 @@
+syntax="proto3";
+package defaultpackage;
+
+service Fibonacci{
+    rpc generaFibonacci(stream msgRichiesta) returns (stream msgRisposta);
+}
+
+message msgRichiesta{
+    int32 input = 1;
+}
+
+message msgRisposta{
+    int64 output = 1;
+}
