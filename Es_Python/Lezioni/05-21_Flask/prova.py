@@ -1,10 +1,10 @@
 from flask import Flask, request
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/<name")
 def index():
     print(request.headers)
-    return "<h1>Hello, %s!</h1>" %name
+    return "<h1>Hello!</h1>"
 
 @app.route("/testparam")
 def testparam():

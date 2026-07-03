@@ -36,5 +36,8 @@
         "struttura",
         "TERMINALE",
         "tutte"
-    ]
+    ],
+    "basedpyright.analysis.typeCheckingMode": "standard",
+    "basedpyright.analysis.inlayHints.variableTypes": false,
+    "basedpyright.analysis.inlayHints.callArgumentNames": true
 }
