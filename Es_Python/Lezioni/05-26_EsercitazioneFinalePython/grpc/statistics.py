@@ -6,7 +6,7 @@ import pymongo
 from concurrent import futures
 
 def get_database():
-    mongo_client = mongoClient("localhost", 27017)
+    mongo_client = pymongo.MongoClient("localhost", 27017)
     return mongo_client['sensors_database']
 
 
