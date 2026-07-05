@@ -1,4 +1,4 @@
-//package Esercitazioni.Multithreading;
+package Esercitazioni.Multithreading;
 
 public class MioThread implements Runnable{
     private String message;

@@ -1,4 +1,4 @@
-//package Esercitazioni.Multithreading;
+package Esercitazioni.Multithreading;
 
 public class Test {
     public static void main(String[] args){
