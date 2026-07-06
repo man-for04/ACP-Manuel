@@ -1,0 +1,1 @@
+Nelle prove di Giovanni questa corrisponde a 2026-06-17-sim-10

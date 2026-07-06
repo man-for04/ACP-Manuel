@@ -1,0 +1,24 @@
+syntax = "proto3";
+package mioPackage;
+
+service Gestione{
+    rpc stream_temp(stream Richiesta_temperatura) returns (Risposta_string);
+
+    rpc get_average(Richiesta_vuota) returns (Risposta_float);
+}
+
+message Richiesta_temperatura{
+    int32 temperatura = 1;
+}
+
+message Risposta_string{
+    string msg=1;
+}
+
+message Richiesta_vuota{
+
+}
+
+message Risposta_float{
+    float media = 1;
+}

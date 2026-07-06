@@ -17,6 +17,9 @@ if __name__ == "__main__":
     
     conn.connect(wait=True)
     
+    conn.set_listener('', ClientListener(conn=conn))
+    conn.subscribe('/queue/Risposta', id=1, ack='auto')
+    
     print(f"<CLIENT> Connesso a {conn.is_connected}")
     
     #Invio N messaggi
@@ -39,8 +42,6 @@ if __name__ == "__main__":
         print("Errore nel recupero dei parametri!")
         
         #setup di ascolto su Risposta
-    conn.set_listener('', ClientListener(conn=conn))
-    conn.subscribe('/queue/Risposta', id=1, ack='auto')
         
     print("In attesa di risposte...")
     
