@@ -62,7 +62,11 @@ class GestioneServicerImpl(temperature_pb2_grpc.GestioneServicer):
             media += data
             conta += 1
         
-        media = media/conta
+        
+        if conta == 0:
+            media = 0
+        else:
+            media = media/conta
         
         return temperature_pb2.Risposta_float(media=media)
 
