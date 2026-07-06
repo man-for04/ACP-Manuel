@@ -21,7 +21,7 @@ if __name__ == "__main__":
     
     #Invio N messaggi
     try:
-        N = 1
+        N = 10
         for _ in range(N):
             
             tipo_richiesta = tipi_richieste[random.randint(0,1)]

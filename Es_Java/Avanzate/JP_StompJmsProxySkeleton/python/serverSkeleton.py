@@ -16,7 +16,7 @@ def run_process(s:socket.socket, skel):
     
     if ("preleva" in mess_richiesta):
         #caso 1-> soltanto richiesta di prelevare
-        ris = str(skel.preleva()+'\n')
+        ris = str(skel.preleva())+'\n'
         s.send(ris.encode("utf-8"))
         
         print(f'<ServerSkeleton> ho inviato risposta a richiesta: {ris}')

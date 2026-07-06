@@ -34,6 +34,22 @@ public class DispatcherThread extends Thread{
 
             System.out.println("<DispatcherThread> Inviata richiesta di deposito "+id_articolo);
 
+            try {
+                QueueSession qsession = qConnection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+                QueueSender sender = qsession.createSender(queue);
+
+                TextMessage risposta = qsession.createTextMessage();
+                risposta.setText("deposited");
+                sender.send(risposta);
+                System.out.println("<Dispatcher> ho inviato RISPOSTA: "+risposta.getText());
+
+                sender.close();
+                qsession.close();
+
+            } catch (JMSException e) {
+                e.printStackTrace();
+            }
+
         }
         else if(tipo_richiesta.equals("preleva")){
             System.out.println("<DispatcherThread> Ricevuta richiesta di prelevare");
