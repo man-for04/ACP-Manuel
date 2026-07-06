@@ -13,5 +13,6 @@
         "/home/studente/java_grpc_dependencies/javax.annotation-api-1.3.2.jar",
         "/home/studente/java_grpc_dependencies/perfmark-api-0.26.0.jar",
         "/home/studente/java_grpc_dependencies/protobuf-java-4.31.1.jar"
-    ]
+    ],
+    "basedpyright.analysis.typeCheckingMode": "standard"
 }

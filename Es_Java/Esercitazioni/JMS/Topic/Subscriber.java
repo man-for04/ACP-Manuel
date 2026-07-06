@@ -39,6 +39,7 @@ public class Subscriber {
             
             TopicSubscriber subscriber= tSession.createDurableSubscriber(topic, "sub1");
             
+            
             subscriber.setMessageListener(new MioListener());
             
             tConnection.start();
