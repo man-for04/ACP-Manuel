@@ -5,7 +5,7 @@ import temperature_pb2_grpc
 import grpc
 import concurrent.futures
 import stomp
-
+from threading import Lock
 
 class GestioneServicerImpl(temperature_pb2_grpc.GestioneServicer):
     
@@ -14,17 +14,19 @@ class GestioneServicerImpl(temperature_pb2_grpc.GestioneServicer):
         self.temp_queue=queue
         self.soglia = soglia
         
+        #Per la concorrenza della queue
+        self.lock = Lock()
+        
+        #STOMP
+        self.conn = stomp.Connection([('localhost', 61613)])
+        self.conn.connect(wait=True)
         
     def send_on_stomp(self, dato):
-        conn = stomp.Connection([('localhost', 61613)])
-        conn.connect(wait=True)
         
-        conn.send(destination='/topic/alert', body=str(dato))
+        self.conn.send(destination='/topic/alert', body=str(dato))
         
         print(f"Inviato {dato} sul topic")
-        
-        conn.disconnect()
-    
+            
     def stream_temp(self, request_iterator, context):
         
         print("stream_temp avviato")
@@ -56,12 +58,14 @@ class GestioneServicerImpl(temperature_pb2_grpc.GestioneServicer):
         media = 0.0
         conta = 0.0
         
-        while(not self.temp_queue.empty()):
-            
-            data = self.temp_queue.get()
-            media += data
-            conta += 1
-        
+        with self.lock:
+            #Inizio sezione critica
+            while(not self.temp_queue.empty()):
+                
+                data = self.temp_queue.get()
+                media += data
+                conta += 1
+            #Fine sezione critica
         
         if conta == 0:
             media = 0
@@ -84,6 +88,7 @@ def serve(queue, soglia):
     print("Server Checker grpc avviato! Porto: ",porto)
     
     server.wait_for_termination()
+    
     print("Server Checker terminato")
 
 if __name__=="__main__":
