@@ -61,13 +61,14 @@ def update():
         for doc in query:
             print("--->E' stato trovato un documento modificabile! Modifico...")
             costo_vecchio = doc['cost']
+            id = doc['_id']
             print("Trovato costo di: ", costo_vecchio)
             costo_nuovo = costo_vecchio-discount
             
             if costo_nuovo < 0:
                 costo_nuovo=0
             
-            ris = collection.update_one(filter={'operator':operator, 'nights': {"$gte" : nights} },update={"$set":{'cost':costo_nuovo}})
+            ris = collection.update_one(filter={'_id':id},update={"$set":{'cost':costo_nuovo}})
             print(ris)
             
         print("Aggiornamento a buon fine")
