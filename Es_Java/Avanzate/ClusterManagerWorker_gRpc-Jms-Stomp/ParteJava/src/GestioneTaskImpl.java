@@ -40,6 +40,7 @@ public class GestioneTaskImpl extends GestioneTaskImplBase{
         System.out.println("Richiesta di deploy ricevuta");
         DepolyThread td = new DepolyThread(request, this);
         td.start();
+        
 
         Res_void risp = Res_void.newBuilder().build();
         responseObserver.onNext(risp);
