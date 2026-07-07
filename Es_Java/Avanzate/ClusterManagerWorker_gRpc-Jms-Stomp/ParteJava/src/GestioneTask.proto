@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package PackageTask;
+
+service GestioneTask {
+
+    rpc deploy(Req_task) returns (Res_void);
+    rpc stop_all(Req_string) returns (Res_void);
+}
+
+message Req_task{
+    int32 id = 1; //id del task
+    string name = 2; //nome del task
+    string type = 3; //gpu-bound o real-time
+}
+
+message Res_void {}
+
+message Req_string {
+    string type = 1; //gpu-bound o real-time
+}
+
