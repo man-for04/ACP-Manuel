@@ -47,7 +47,7 @@ class ServerListener(stomp.ConnectionListener):
             #spacchettamento messaggio
             from_operator = msg.split('#')
             from_operator.pop(0)
-            print(f'Ricevuto da operator CREATE: {from_operator}')
+            print(f'Ricevuto da operator UPDATE: {from_operator}')
             
             to_db = {
                     'operator': from_operator[0],

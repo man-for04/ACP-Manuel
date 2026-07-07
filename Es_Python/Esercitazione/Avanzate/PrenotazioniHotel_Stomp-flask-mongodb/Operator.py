@@ -95,3 +95,7 @@ if __name__ == "__main__":
     for t in threads:
         t.join()
         print("Thread ritornato")
+        
+    time.sleep(10)
+    print("Operator terminato")
+    conn.disconnect()
