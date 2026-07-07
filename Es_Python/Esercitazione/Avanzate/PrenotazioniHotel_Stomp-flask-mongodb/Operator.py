@@ -48,10 +48,10 @@ def doUpdate(operator):
     
     #produzione
     
-    discount = random.randint(5,1000)
     nights = random.randint(1,14)
+    discount = random.randint(50,3000)
     
-    richiesta : str = f'UPDATE#{operator}#{discount}#{nights}'
+    richiesta : str = f'UPDATE#{discount}#{operator}#{nights}'
     print(f"Sto inviando richiesta: {richiesta}")
     
     conn.send(destination='/topic/request', body=richiesta)

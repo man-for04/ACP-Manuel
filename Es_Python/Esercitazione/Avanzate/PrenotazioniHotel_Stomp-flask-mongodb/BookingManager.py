@@ -1,5 +1,7 @@
 import time
 
+from requests import Response
+import requests
 import stomp
 
 class ServerListener(stomp.ConnectionListener):
@@ -37,9 +39,15 @@ class ServerListener(stomp.ConnectionListener):
                 print(f'{x}:{y}')
                 
             
-            #TODO: Invia json come richiesta Request
-            #TODO: RIcevi e inoltra a Operator la risposta
-            conn.send(destination='/topic/response',body='Ok create')
+            #Invia json come richiesta Request
+            r = requests.post(url='http://localhost:5000/create',json=to_db)
+            try:
+                r.raise_for_status()
+                
+            except requests.HTTPError:
+                print("ERRORE in ricezione da CREATE!")
+            
+            conn.send(destination='/topic/response',body=r.text)
         
         
         elif('UPDATE' in msg):
@@ -50,9 +58,9 @@ class ServerListener(stomp.ConnectionListener):
             print(f'Ricevuto da operator UPDATE: {from_operator}')
             
             to_db = {
-                    'operator': from_operator[0],
-                    'nights': int(from_operator[1]),
-                    'discount':int(from_operator[2])
+                    'discount':int(from_operator[0]),
+                    'operator': from_operator[1],
+                    'nights': int(from_operator[2])
                     }
             print("Invio a DB: ")
             for x,y in to_db.items():
@@ -60,8 +68,15 @@ class ServerListener(stomp.ConnectionListener):
                 
             
             #TODO: Invia json come richiesta Request
-            #TODO: RIcevi e inoltra a Operator la risposta
-            conn.send(destination='/topic/response',body='Ok update')
+            r=requests.put(url='http://localhost:5000/update', json=to_db)
+            
+            try:
+                r.raise_for_status()
+                
+            except requests.HTTPError:
+                print("ERRORE in ricezione da UPDATE!")
+            
+            conn.send(destination='/topic/response',body=r.text)
             
         else:
             print("ERRORE! Tipo di richiesta non valida in ", msg)
@@ -75,6 +90,6 @@ if __name__ == "__main__":
     conn.subscribe(destination='/topic/request', id=1, ack='auto')
     print("BookingManager avviato e in ascolto...")
     
-    time.sleep(60)
+    time.sleep(100)
     conn.disconnect()
     print("BookingManager chiuso")
