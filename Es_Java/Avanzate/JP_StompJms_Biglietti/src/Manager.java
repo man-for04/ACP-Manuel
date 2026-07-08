@@ -33,11 +33,14 @@ public class Manager {
             TopicConnection tConnection = tfactory.createTopicConnection();
             TopicSession tSession = tConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
 
+            TopicPublisher tickets_publisher = tSession.createPublisher(tickets_topic);
+            TopicPublisher stats_publisher = tSession.createPublisher(stats_topic);
+
 
 
             //Ascolto di request
             TopicSubscriber request_subscriber = tSession.createSubscriber(request_topic);
-            request_subscriber.setMessageListener(new ManagerListener(tConnection, tickets_topic, stats_topic, out));
+            request_subscriber.setMessageListener(new ManagerListener(tSession, tickets_publisher, stats_publisher, out));
 
             tConnection.start();
     

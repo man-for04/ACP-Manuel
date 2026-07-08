@@ -6,15 +6,15 @@ import javax.jms.*;
 
 public class ManagerListener implements MessageListener{
 
-    TopicConnection tConnection;
-    Topic tickets_topic;
-    Topic stats_topic;
+    TopicSession tSession;
+    TopicPublisher tickets_publisher;
+    TopicPublisher stats_publisher;
     PrintWriter out;
 
-    public ManagerListener(TopicConnection tConnection, Topic tickets_topic, Topic stats_topic, PrintWriter out) {
-        this.tConnection = tConnection;
-        this.tickets_topic = tickets_topic;
-        this.stats_topic = stats_topic;
+    public ManagerListener(TopicSession tSession, TopicPublisher tickets_publisher, TopicPublisher stats_publisher, PrintWriter out) {
+        this.tSession = tSession;
+        this.tickets_publisher = tickets_publisher;
+        this.stats_publisher = stats_publisher;
         this.out = out;
     }
 
@@ -27,10 +27,8 @@ public class ManagerListener implements MessageListener{
 
 
             //gestione jms uscita
-            TopicSession tSession = tConnection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
-            TopicPublisher tickets_publisher = tSession.createPublisher(tickets_topic);
-            TopicPublisher stats_publisher = tSession.createPublisher(stats_topic);
-            //@Gemini: serve metterli qui? O li passo da Manager.java?
+            
+            
 
             
             //unpacking
