@@ -26,7 +26,7 @@ public class ErrorListener implements MessageListener{
             
 
 
-            if(messaggioLog.contains("fatal") || (messaggioLog.contains("exception"))){
+            if(messaggioLog.contains(stringa_input)){
                 System.out.println("Scrivo su file error... ["+ messaggioLog +  "-"+Integer.toString(tipo)+"]");
                 out.println(messaggioLog + " - "+Integer.toString(tipo));
             }
