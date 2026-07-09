@@ -21,7 +21,7 @@ def update_history():
         print(f"-->Ricevuto da manager: {to_write}")
         
         with open('history.txt', 'a') as out:
-            out.write(to_write)
+            out.write(to_write+'\n')
             out.flush()
             print("Scritto")
             

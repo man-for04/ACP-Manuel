@@ -1,1 +1,10 @@
-buy-74buy-58sell-58sell-74sell-80sell-93buy-93buy-80
+buy-51
+sell-89
+sell-51
+sell-48
+buy-48
+buy-89
+sell-41
+sell-81
+buy-41
+sell-33
