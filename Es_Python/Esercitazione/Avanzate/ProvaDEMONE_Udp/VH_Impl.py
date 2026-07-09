@@ -47,10 +47,10 @@ class VH_Impl(IValidationHub):
             projectId = str(x)
             
         
-        controllo_runs = requests.post(url=f'http://127.0.0.1:5000/projects/{projectId}/test-runs')
-        controllo_checks = requests.post(url=f'http://127.0.0.1:5000/projects/{projectId}/style-checks')
+        controllo_runs = (requests.post(url=f'http://127.0.0.1:5000/projects/{projectId}/test-runs', json=Project)).json()
+        controllo_checks = (requests.post(url=f'http://127.0.0.1:5000/projects/{projectId}/style-checks', json=Project)).json()
         
-        controllo = {'result', 'pass'}
+        controllo = {'result': 'pass'}
         
         x = (controllo_runs == controllo and controllo_checks == controllo)
         print("<VH_Impl>  controllo da flask è: ", x)
