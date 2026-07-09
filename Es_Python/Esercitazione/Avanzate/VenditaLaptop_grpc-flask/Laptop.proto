@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package mioPackage;
+
+service Compravendita{
+
+    rpc buy(msg_Void) returns (msg_Laptop);
+    rpc sell(msg_Laptop) returns (msg_ack);
+}
+
+message msg_Void{}
+
+message msg_Laptop{
+    int32 serial_number = 1;
+}
+
+message msg_ack{
+    bool ack = 1;
+}
