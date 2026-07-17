@@ -1,0 +1,18 @@
+syntax = "proto3";
+package mioPackage;
+
+service GestioneLab {
+    rpc book(Msg_labnumber) returns (Ack);
+    rpc delete(Empty) returns(Msg_labnumber);
+}
+
+message Msg_labnumber{
+    int32 lab_number = 1;
+}
+message Ack{
+    bool ack = 1;
+}
+
+message Empty{
+    
+}
