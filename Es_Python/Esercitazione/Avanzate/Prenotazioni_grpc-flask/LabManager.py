@@ -35,6 +35,7 @@ class miaCoda():
                 self.cv_prod.wait()
                 
             self.buffer.append(elem)
+            self.dim+=1
             
             self.cv_cons.notify()
             
@@ -43,9 +44,12 @@ class miaCoda():
         with self.lucchetto:
             
             while self.is_empty():
+                print("attendo...")
                 self.cv_cons.wait()
+                print("sbloccato!")
                 
             elem = self.buffer.pop(0)
+            self.dim-=1
             
             self.cv_prod.notify()
         
@@ -58,7 +62,6 @@ class GestioneLabImpl(Laboratori_pb2_grpc.GestioneLabServicer):
         self.lab_queue = miaCoda()
     
     def book(self, request:Laboratori_pb2.Msg_labnumber, context):
-        print(".")
         from_user = int(request.lab_number)
         self.lab_queue.add(from_user)
         print("-->Ricevuto e inserito in coda (vado su flask)", from_user)
@@ -69,7 +72,7 @@ class GestioneLabImpl(Laboratori_pb2_grpc.GestioneLabServicer):
                     'lab_number':from_user}
         
         
-        r = requests.post(url="https://127.0.0.1:5000/book_history", json=payload)
+        r = requests.post(url="http://127.0.0.1:5000/book_history", json=payload)
         
         print("--> Ricevuto da flask: ", r.text)
         if 'ack' in r.text:
@@ -79,17 +82,16 @@ class GestioneLabImpl(Laboratori_pb2_grpc.GestioneLabServicer):
         
     
     def delete(self, request, context):
-        print(".")
         lab_number = int(self.lab_queue.consuma())
         print("<-- Letto dalla coda ", lab_number)
         
         #TODO: post
         
-        payload = {'operation':'book',
+        payload = {'operation':'delete',
                     'lab_number':lab_number}
         
         
-        r = requests.post(url="https://127.0.0.1:5000/book_history", json=payload)
+        r = requests.post(url="http://127.0.0.1:5000/book_history", json=payload)
         
         print("--> Ricevuto da flask: ", r.text)
         

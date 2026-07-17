@@ -38,7 +38,7 @@ if __name__ == "__main__":
     porto = sys.argv[1]
     print("Sono il client, porto = ", porto)
     
-    with grpc.insecure_channel("127.0.0.1"+porto) as channel:
+    with grpc.insecure_channel("localhost:"+porto) as channel:
         
         proxy = Laboratori_pb2_grpc.GestioneLabStub(channel)
         
