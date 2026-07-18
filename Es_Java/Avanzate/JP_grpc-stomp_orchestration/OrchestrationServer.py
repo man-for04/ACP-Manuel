@@ -21,12 +21,12 @@ class OrchestrationImpl(Orchestration_pb2_grpc.OrchestrationServicer):
         for x in request_iterator:
             tipo = x.tipo
             task = x.task
-            print(f"\n-->Ricevuto ({x+1}/4) {tipo}, {task}")
+            print(f"\n-->Ricevuto {tipo}, {task}")
             
             if('GPU-based' in tipo):
                 self.conn.send(destination='/topic/GPU', body=task)
             elif('CPU-based' in tipo):
-                self.conn.send('/topic/CPU', body=task)
+                self.conn.send(destination='/topic/CPU', body=task)
             else:
                 ok = 'WARNING'
                 
