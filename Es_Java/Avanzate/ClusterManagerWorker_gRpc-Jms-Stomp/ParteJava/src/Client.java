@@ -7,6 +7,7 @@ import io.grpc.Channel;
 import io.grpc.Grpc;
 import io.grpc.InsecureChannelCredentials;
 import io.grpc.ManagedChannel;
+import src.Client;
 
 public class Client {
     private final GestioneTaskGrpc.GestioneTaskBlockingStub proxy;
