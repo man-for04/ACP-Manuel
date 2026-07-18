@@ -1,0 +1,15 @@
+syntax = "proto3";
+package mioPackage;
+
+service Orchestration{
+    rpc orchestrate(stream msg_req) returns (msg_res);
+}
+
+message msg_req{
+    string task=1;
+    string tipo=2;
+}
+
+message msg_res{
+    string ritorno=1;
+}
