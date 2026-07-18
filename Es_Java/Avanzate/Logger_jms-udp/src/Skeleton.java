@@ -10,8 +10,9 @@ public abstract class Skeleton implements ILogger{
 
     //Devo occuparmi di effettuare la connessione
 
-    public void run_skeleton(){
-        try(DatagramSocket conn = new DatagramSocket(0)){
+    public void run_skeleton(int port){
+
+        try(DatagramSocket conn = new DatagramSocket(port)){
             
             byte[] buffer = new byte[60000];
             DatagramPacket from_disk = new DatagramPacket(buffer, buffer.length);
