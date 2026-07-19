@@ -50,7 +50,7 @@ public class GestioneTaskImpl extends GestioneTaskImplBase{
     @Override
     public void stopAll(Req_string request, StreamObserver<Res_void> responseObserver) {
         System.out.println("Richiesta di stopAll ricevuta");
-        StopAllThread td = new StopAllThread(request, this);
+        StopAllThread2 td = new StopAllThread2(request, this);
         td.start();
 
         Res_void risp = Res_void.newBuilder().build();

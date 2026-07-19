@@ -1,0 +1,20 @@
+syntax = "proto3";
+package mioPackage;
+
+service TaskManagement{
+
+    rpc deploy(msg_req_dep) returns (msg_empty);
+    rpc stop_all(msg_req_stop) returns(msg_empty);
+}
+
+message msg_req_dep{
+    int32 id = 1;
+    string name = 2;
+    string type = 3;
+}
+
+message msg_req_stop{
+    string type = 1;
+}
+
+message msg_empty{}

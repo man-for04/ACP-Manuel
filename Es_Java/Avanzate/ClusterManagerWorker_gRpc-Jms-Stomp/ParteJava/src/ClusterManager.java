@@ -32,7 +32,7 @@ public class ClusterManager {
     }
 
     public static void main(String[] args){
-        final ClusterManager cm = new ClusterManager();
+        final ClusterManager2 cm = new ClusterManager2();
         cm.serve();
     }
 }

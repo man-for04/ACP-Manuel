@@ -1,0 +1,17 @@
+syntax = "proto3";
+package mioPackage;
+
+service Validation{
+    rpc submitProject(stream CodeChunk) returns (ValidationResult);
+}
+
+message CodeChunk{
+    string projectId = 1;
+    string fileName=2;
+    string content = 3;
+    int32 chunkIndex = 4;
+}
+
+message ValidationResult{
+    bool result = 1;
+}
