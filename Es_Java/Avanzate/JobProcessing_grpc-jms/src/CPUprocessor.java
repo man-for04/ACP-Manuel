@@ -36,7 +36,7 @@ public class CPUprocessor {
     
                 TopicSubscriber sub_cpu = session.createSubscriber(topic_cpu);
                 PrintStream out = new PrintStream(new FileOutputStream("cpu.txt", true), true);
-                sub_cpu.setMessageListener(new GPUprocessorListener(out));
+                sub_cpu.setMessageListener(new CPUprocessorListener(out));
                 connection.start();
     
                 System.out.println("Cpu Processor attivato!");
