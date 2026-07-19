@@ -16,7 +16,7 @@ class PressAnalyzerListener(stomp.ConnectionListener):
         
         value = int(from_extractor)
         
-        out.write(f'{self.conta} -- {value}') #sarebbe csv
+        out.write(f'{self.conta} -- {value}\n') #sarebbe csv
         print("scritto")
             
 
