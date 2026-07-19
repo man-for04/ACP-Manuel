@@ -61,7 +61,7 @@ public class Client {
             else if(type.equals("pressure")){
 
                 for(int i=0;i<20;i++){
-                    value = rand.nextInt(1000, 1050);
+                    value = rand.nextInt(1000, 1051);
 
                     System.out.println("<-- ["+type+"-"+value+"]");
                     to_extractor.setInt("value", value);
@@ -69,7 +69,7 @@ public class Client {
                     pub.publish(to_extractor);
                     System.out.println("inviato\n");
 
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 }
 
             }
