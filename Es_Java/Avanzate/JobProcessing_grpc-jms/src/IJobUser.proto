@@ -1,0 +1,14 @@
+syntax = "proto3";
+package mioPackage;
+
+service Jobs{
+    rpc job_req(msg_req) returns (msg_empty);
+}
+
+message msg_req{
+    string nomeJob = 1;
+    int32 tipoProcessing = 2;
+    string nomeFile = 3;
+}
+
+message msg_empty{}

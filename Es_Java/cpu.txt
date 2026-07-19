@@ -1,0 +1,10 @@
+[job22, 1, main.py] gpu:9
+
+[job21, 1, main.py] gpu:20
+
+[job13, 1, main.py] gpu:13
+
+[job23, 1, main.py] gpu:13
+
+[job67, 1, main.py] gpu:17
+
